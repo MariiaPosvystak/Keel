@@ -1,0 +1,56 @@
+@{
+    ViewBag.Title = "Avaleht";
+}
+
+<main class="container py-5">
+
+    <!-- Hero Section -->
+    <section class="text-center mb-5">
+        <h1 class="display-4 fw-bold">
+            Tere tulemast LanguageBridge’i 🌍
+        </h1>
+
+        <p class="lead text-muted">
+            Õpi keeli professionaalsete õpetajatega ja ava uks rahvusvahelisse maailma.
+        </p>
+
+        <a href="@Url.Action("Index", "Keelekursus")"
+           class="btn btn-dark btn-lg mt-3">
+            Alusta õppimist
+        </a>
+    </section>
+
+    <!-- Features -->
+    <div class="row mt-5 g-4">
+
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 h-100 text-center p-4">
+                <h3>🎓 Professionaalsed õpetajad</h3>
+                <p class="text-muted">
+                    Meie õpetajad on rahvusvahelise kogemusega ja aitavad sul keelt kiiresti omandada.
+                </p>
+
+                <a href="@Url.Action("Index", "Opetajas")"
+                   class="btn btn-outline-dark mt-auto">
+                    Rohkem
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 h-100 text-center p-4">
+                <h3>🌎 Rahvusvahelised keeled</h3>
+                <p class="text-muted">
+                    Õpi inglise, eesti, saksa ja teisi maailmakeeli mugavalt.
+                </p>
+
+                <a href="@Url.Action("Index", "Keelekursus")"
+                   class="btn btn-outline-dark mt-auto">
+                    Rohkem
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</main>

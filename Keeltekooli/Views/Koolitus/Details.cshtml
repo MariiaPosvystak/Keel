@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Keeltekooli.Models.RegistreerimineViewModel>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@ViewBag.p</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Koolitus.Id)
+        </th>
+        <th>
+            Kursus
+        </th>
+        <th>
+            Nimi
+        </th>
+        <th>
+            Email
+        </th>
+        <th>Status</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Koolitus.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Koolitus.Keelekursus.Nimetus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+        </tr>
+    }
+</table>
