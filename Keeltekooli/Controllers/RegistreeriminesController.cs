@@ -293,15 +293,15 @@ namespace Keeltekooli.Models
                 WebMail.Password = "zrji mktm cmqg ivyx";
                 WebMail.From = "posvystakmariia@gmail.com";
 
-                  string sisu = onkutse                 ? $"Tere, {user.UserName}!<br/><br/>" +
-$"Täname registreerimise eest kursusele <b>{koolitus.Keelekursus.Nimetus}</b>.<br/>" +
-$"Koht kinnitatakse pärast makse sooritamist.<br/>" +
-$"Pärast makse laekumist saadame kinnituse e-kirja.<br/><br/>" +
-$"Aitäh ja ootame sind õppima!"
-:
-$"Tere, {user.UserName}!<br/><br/>" +
-$"Sinu registreerumine kursusele <b>{koolitus.Keelekursus.Nimetus}</b> on salvestatud.<br/>" +
-$"Ootame sind väga!<br/><br/>Kohtumiseni!";
+                string sisu = onkutse? $"Tere, {user.UserName}!<br/><br/>" +
+                $"Täname registreerimise eest kursusele <b>{koolitus.Keelekursus.Nimetus}</b>.<br/>" +
+                $"Koht kinnitatakse pärast makse sooritamist.<br/>" +
+                $"Pärast makse laekumist saadame kinnituse e-kirja.<br/><br/>" +
+                $"Aitäh ja ootame sind õppima!"
+                :
+                $"Tere, {user.UserName}!<br/><br/>" +
+                $"Sinu registreerumine kursusele <b>{koolitus.Keelekursus.Nimetus}</b> on salvestatud.<br/>" +
+                $"Ootame sind väga!<br/><br/>Kohtumiseni!";
 
                 WebMail.Send(
                     to: user.Email,

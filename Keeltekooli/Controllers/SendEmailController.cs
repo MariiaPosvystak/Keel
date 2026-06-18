@@ -58,7 +58,7 @@ namespace Keeltekooli.Controllers
                 WebMail.SmtpPort = 587;
                 WebMail.EnableSsl = true;
                 WebMail.UserName = "posvystakmariia@gmail.com";
-                WebMail.Password = "zrji mktm cmqg ivyx"; // ← настоящий App Password
+                WebMail.Password = "zrji mktm cmqg ivyx";
                 WebMail.From = "posvystakmariia@gmail.com";
 
                 WebMail.Send(
