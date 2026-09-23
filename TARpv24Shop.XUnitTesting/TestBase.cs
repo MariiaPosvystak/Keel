@@ -1,0 +1,68 @@
+﻿using Keeltekooli.Controllers;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using ZendeskApi_v2.Requests;
+
+namespace TARpv24Keeltekooli.XUnitTesting
+{
+    public abstract class TestBase
+    {
+        protected IServiceProvider serviceProvider { get; set; }
+        protected TestBase()
+        {
+            var services = new ServiceCollection();
+            SetupServices(services);
+            serviceProvider = services.BuildServiceProvider();
+        }
+        /// <summary>
+        /// Seame üles testide läbiviimiseks vajalikud kontrollerid mujalt projektist
+        /// See meetod annab ka mälusoleva andmebaasi, mida testideks kasutada,
+        /// VIPER-tüüpi projektis toimib kui "program.cs" analoog, ent lühidal kujul.
+        /// </summary>
+        /// <param name="services"></param>
+        private void SetupServices(ServiceCollection services)
+        {
+            //services.AddScoped<IRegistreeriminesServices, RegistreeriminesServices>();
+            services.AddScoped<KoolitusController>();
+            services.AddScoped<IHostEnvironment, MockIHostEnvironment>();
+
+            services.AddDbContext<KeeltekooliContext>
+                (x =>
+                {
+                    x.UseInMemoryDatabase("TEST");
+                    x.ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning));
+                });
+            RegisterMacros(services);
+        }
+        public void Dispose()
+        {
+
+        }
+        /// <summary>
+        /// Leia üles kindel teenus, teenusepakkujalt.
+        /// serviceProvider omab kontrollerise instantse, ning GetService hangib selle
+        /// X tüüpi kontrolleri
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        protected T Svc<T>()
+        {
+            return serviceProvider.GetService<T>();
+        }
+        private void RegisterMacros(ServiceCollection services)
+        {
+            var macroBaseType = typeof(IMacros);
+            var macros = macroBaseType.Assembly.GetTypes()
+                .Where(t => IsInterface && !t.IsAbstract);
+            foreach(var macro is macros)
+            {
+                services.AddSingleton(macro);
+            }
+        }
+    }
+}
